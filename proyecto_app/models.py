@@ -7,7 +7,7 @@ class Imprenta(models.Model):
     def __str__(self):
         return self.nombre
 
-################# Relacion de uno a muchos donde la llave muchos pasa para el lado uno ######
+################# OneToMany #################################################
 
 class Libro(models.Model):
     title = models.CharField(max_length=100)
@@ -25,7 +25,7 @@ class Libro(models.Model):
     def __str__(self):
         return self.title
 
-####################################### ManyToMany ##############################
+####################################### ManyToMany #############################
 
 class Biblioteca(models.Model):
     nombre = models.CharField(max_length=100)
@@ -36,10 +36,10 @@ class Biblioteca(models.Model):
 
 
 
-######################## Relacion OneToOne ####################################
+######################## OneToOne ###############################################
 class Lector(models.Model):
     nombre=models.CharField(max_length=100)
-    libro_ocupado = models.OneToOneField(Libro, on_delete=models.CASCADE)
+    libro_ocupado = models.OneToOneField(Libro, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.nombre
