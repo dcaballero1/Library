@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Imprenta(models.Model):
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
 
     def __str__(self):
@@ -10,10 +11,11 @@ class Imprenta(models.Model):
 ################# OneToMany #################################################
 
 class Libro(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
     resume = models.CharField(max_length=255)
     author = models.CharField(max_length=50)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
     copia = models.IntegerField()
     id_imprenta = models.ForeignKey(Imprenta, related_name='libros', on_delete=models.CASCADE)
 
@@ -28,6 +30,7 @@ class Libro(models.Model):
 ####################################### ManyToMany #############################
 
 class Biblioteca(models.Model):
+    id =models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
     libros = models.ManyToManyField(Libro)
 
@@ -38,6 +41,7 @@ class Biblioteca(models.Model):
 
 ######################## OneToOne ###############################################
 class Lector(models.Model):
+    id = models.AutoField(primary_key=True)
     nombre=models.CharField(max_length=100)
     libro_ocupado = models.OneToOneField(Libro, on_delete=models.CASCADE, blank=True, null=True)
 

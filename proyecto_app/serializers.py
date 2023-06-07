@@ -4,7 +4,7 @@ from .models import Libro, Imprenta, Lector, Biblioteca
 class libroSerializers(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Libro
-        fields = ('title','resume', 'author', 'created_at', 'copia','id_imprenta')
+        fields = ('id','title','resume', 'author', 'created_at', 'copia','id_imprenta')
         read_only_fields = ('created_at',)
 
 
@@ -16,15 +16,15 @@ class imprentaSerializers(serializers.HyperlinkedModelSerializer):
     )
     class Meta:
         model = Imprenta
-        fields = ('libros', 'nombre')
+        fields = ('id','libros', 'nombre')
         read_only_fields = ('created_at',)
 
 class lectorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Lector
-        fields = ('nombre','libro_ocupado')
+        fields = ('id','nombre','libro_ocupado')
 
 class bibliotecaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model=Biblioteca
-        fields=('nombre', 'libros')
+        fields=('id','nombre', 'libros')
