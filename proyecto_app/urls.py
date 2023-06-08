@@ -1,11 +1,11 @@
 from rest_framework import routers
-from .api import libroViewSet, imprentaViewSet, lectorViewSet, bibliotecaViewSet
+from .api import bookViewSet, printingViewSet, readerViewSet, bookstoreViewSet
 
 router= routers.DefaultRouter()
 
-router.register('api/libro', libroViewSet, 'libro')
-router.register('api/imprenta', imprentaViewSet, 'imprenta')
-router.register('api/lector', lectorViewSet, 'lector')
-router.register('api/biblioteca', bibliotecaViewSet, 'biblioteca')
+router.register('api/book', bookViewSet, 'book')
+router.register('api/printing', printingViewSet, 'printing')
+router.register('api/reader', readerViewSet, 'reader')
+router.register('api/bookstore', bookstoreViewSet, 'bookstore')
 
 urlpatterns = router.urls

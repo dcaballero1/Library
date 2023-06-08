@@ -1,50 +1,61 @@
 from django.db import models
 
 # Create your models here.
-class Imprenta(models.Model):
+class Printing(models.Model):
     id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    state = models.CharField(max_length=250)
+    city = models.CharField(max_length=250)
+    owner = models.CharField(max_length=250)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.nombre
+        return self.name
 
 ################# OneToMany #################################################
 
-class Libro(models.Model):
+class Book(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=100)
     resume = models.CharField(max_length=255)
     author = models.CharField(max_length=50)
     created_at = models.DateField(auto_now_add=True)
-    copia = models.IntegerField()
-    id_imprenta = models.ForeignKey(Imprenta, related_name='libros', on_delete=models.CASCADE)
+    copies = models.IntegerField()
+    name_imprenta = models.ForeignKey(Printing, related_name='books', on_delete=models.CASCADE)
 
 
     class Meta:
-        verbose_name = 'libro'
-        verbose_name_plural = 'libros'
+        verbose_name = 'book'
+        verbose_name_plural = 'books'
 
     def __str__(self):
         return self.title
 
 ####################################### ManyToMany #############################
 
-class Biblioteca(models.Model):
+class BookStore(models.Model):
     id =models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=100)
-    libros = models.ManyToManyField(Libro)
+    name = models.CharField(max_length=100)
+    state = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    owner= models.CharField(max_length=250)
+    active = models.CharField(max_length=250)
+    books = models.ManyToManyField(Book)
 
     def __str__(self):
-        return self.nombre
-
+        return self.name
 
 
 ######################## OneToOne ###############################################
-class Lector(models.Model):
+
+class Reader(models.Model):
     id = models.AutoField(primary_key=True)
-    nombre=models.CharField(max_length=100)
-    libro_ocupado = models.OneToOneField(Libro, on_delete=models.CASCADE, blank=True, null=True)
+    name=models.CharField(max_length=100)
+    state=models.CharField(max_length=250)
+    city = models.CharField(max_length=250)
+    street = models.CharField(max_length=250)
+    has_book = models.OneToOneField(Book, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return self.nombre
+        return self.name
 

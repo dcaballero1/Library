@@ -1,30 +1,30 @@
 from rest_framework import serializers
-from .models import Libro, Imprenta, Lector, Biblioteca
+from .models import Book, Printing, Reader, BookStore
 
-class libroSerializers(serializers.HyperlinkedModelSerializer):
+class bookSerializers(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Libro
-        fields = ('id','title','resume', 'author', 'created_at', 'copia','id_imprenta')
+        model = Book
+        fields = ('__all__')
         read_only_fields = ('created_at',)
 
 
-class imprentaSerializers(serializers.HyperlinkedModelSerializer):
-    libros=serializers.SlugRelatedField(
+class printingSerializers(serializers.HyperlinkedModelSerializer):
+    books=serializers.SlugRelatedField(
         many=True,
         read_only=True,
         slug_field='title'
     )
     class Meta:
-        model = Imprenta
-        fields = ('id','libros', 'nombre')
+        model = Printing
+        fields = ('__all__')
         read_only_fields = ('created_at',)
 
-class lectorSerializer(serializers.HyperlinkedModelSerializer):
+class readerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Lector
-        fields = ('id','nombre','libro_ocupado')
+        model = Reader
+        fields = ('__all__')
 
-class bibliotecaSerializer(serializers.HyperlinkedModelSerializer):
+class bookstoreSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model=Biblioteca
-        fields=('id','nombre', 'libros')
+        model=BookStore
+        fields=('__all__')

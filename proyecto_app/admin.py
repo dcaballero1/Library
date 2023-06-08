@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Imprenta, Libro, Lector, Biblioteca
+from .models import Printing, Book, Reader, BookStore
 
 # Register your models here.
-admin.site.register(Imprenta)
-admin.site.register(Libro)
-admin.site.register(Lector)
-admin.site.register(Biblioteca)
+admin.site.register(Printing)
+admin.site.register(Book)
+admin.site.register(Reader)
+admin.site.register(BookStore)

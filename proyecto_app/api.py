@@ -1,24 +1,23 @@
 from rest_framework import viewsets, permissions
-from .models import Libro, Imprenta, Lector, Biblioteca
-from .serializers import libroSerializers, imprentaSerializers, lectorSerializer, bibliotecaSerializer
+from .models import *
+from .serializers import *
 
-
-class libroViewSet(viewsets.ModelViewSet):
-    queryset = Libro.objects.all()
+class bookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
     permission_classes = [permissions.AllowAny]
-    serializer_class = libroSerializers
+    serializer_class = bookSerializers
 
-class imprentaViewSet(viewsets.ModelViewSet):
-    queryset = Imprenta.objects.all()
+class printingViewSet(viewsets.ModelViewSet):
+    queryset = Printing.objects.all()
     permission_classes = [permissions.AllowAny]
-    serializer_class = imprentaSerializers
+    serializer_class = printingSerializers
 
-class lectorViewSet(viewsets.ModelViewSet):
-    queryset = Lector.objects.all()
+class readerViewSet(viewsets.ModelViewSet):
+    queryset = Reader.objects.all()
     permission_classes= [permissions.AllowAny]
-    serializer_class = lectorSerializer
+    serializer_class = readerSerializer
 
-class bibliotecaViewSet(viewsets.ModelViewSet):
-    queryset = Biblioteca.objects.all()
+class bookstoreViewSet(viewsets.ModelViewSet):
+    queryset = BookStore.objects.all()
     permission_classes = [permissions.AllowAny]
-    serializer_class = bibliotecaSerializer
+    serializer_class = bookstoreSerializer
